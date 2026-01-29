@@ -585,14 +585,14 @@
 </head>
 <body itemscope itemtype="https://schema.org/WebApplication">
     <div class="bg-decoration">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <div class="circle" alt=""></div>
+        <div class="circle" alt=""></div>
+        <div class="circle" alt=""></div>
     </div>
 
-    <div class="container">
+    <main class="container">
         <!-- Input Page -->
-        <div class="input-page" id="inputPage">
+        <section class="input-page" id="inputPage">
             <header>
                 <h1 itemprop="name">복리의 마법 💰</h1>
                 <p class="subtitle" itemprop="description">작은 시작이 만드는 큰 변화를 경험하세요</p>
@@ -600,7 +600,7 @@
 
             <div class="main-grid">
                 <!-- Calculator Section -->
-                <div class="card">
+                <article class="card">
                     <h2><span class="card-icon">⚙️</span>저축 설정</h2>
                     
                     <div class="input-group">
@@ -637,13 +637,13 @@
                     <button class="btn btn-primary" onclick="calculate()">
                         <span>📊</span> 시뮬레이션 시작
                     </button>
-                </div>
+                </article>
 
                 <!-- Info Section -->
-                <div class="card">
+                <aside class="card">
                     <h2><span class="card-icon">💡</span>복리의 힘</h2>
                     
-                    <div style="background: rgba(42, 157, 143, 0.05); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+                    <article style="background: rgba(42, 157, 143, 0.05); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
                         <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem;">복리란 무엇인가요?</h3>
                         <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 1rem;">
                             복리는 '이자에 이자가 붙는 것'을 말합니다. 단리와 달리 원금뿐만 아니라 발생한 이자에도 이자가 붙어 
@@ -654,9 +654,9 @@
                             아인슈타인은 "복리는 세상에서 가장 위대한 수학적 발견"이라고 말했습니다. 
                             작은 금액이라도 꾸준히 저축하면 복리 효과로 큰 목돈을 만들 수 있습니다.
                         </p>
-                    </div>
+                    </article>
 
-                    <div style="background: linear-gradient(135deg, rgba(244, 162, 97, 0.1), rgba(231, 111, 81, 0.1)); padding: 1.5rem; border-radius: 12px;">
+                    <article style="background: linear-gradient(135deg, rgba(244, 162, 97, 0.1), rgba(231, 111, 81, 0.1)); padding: 1.5rem; border-radius: 12px;">
                         <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem;">💰 사용 팁</h3>
                         <ul style="color: var(--text-dark); line-height: 2; padding-left: 1.5rem;">
                             <li>주거래 은행의 실제 금리를 입력해보세요</li>
@@ -664,27 +664,27 @@
                             <li>단기(30일), 중기(6개월), 장기(10년)로 비교해보세요</li>
                             <li>월 적립금을 늘렸을 때 효과를 확인해보세요</li>
                         </ul>
-                    </div>
-                </div>
+                    </article>
+                </aside>
             </div>
 
 
-        </div>
+        </section>
 
         <!-- Result Page -->
-        <div class="result-page" id="resultPage">
+        <section class="result-page" id="resultPage">
             <button class="back-button" onclick="goBack()">
                 ← 다시 계산하기
             </button>
 
             <header>
-                <h1 itemprop="name">시뮬레이션 결과 📊</h1>
+                <h2 itemprop="name">시뮬레이션 결과 📊</h2>
                 <p class="subtitle">당신의 저축 계획 분석 결과입니다</p>
             </header>
 
             <div class="result-grid">
                 <!-- Results Summary -->
-                <div class="card">
+                <article class="card">
                     <h2><span class="card-icon">📈</span>최종 결과</h2>
                     
                     <div class="result-display">
@@ -711,18 +711,18 @@
                     <button class="btn btn-primary" onclick="goBack()">
                         🔄 새로운 계산하기
                     </button>
-                </div>
+                </article>
 
                 <!-- Chart Section -->
-                <div class="card" id="chartCard">
+                <article class="card" id="chartCard">
                     <h2><span class="card-icon">📊</span>자산 증가 추이</h2>
                     <div class="chart-container">
                         <div class="chart-bars" id="chartBars"></div>
                     </div>
-                </div>
+                </article>
 
                 <!-- Comparison Section -->
-                <div class="card" id="comparisonCard">
+                <article class="card" id="comparisonCard">
                     <h2><span class="card-icon">🔍</span>복리 vs 단리 비교</h2>
                     <p style="color: var(--text-dark); margin-bottom: 1rem;">
                         같은 조건에서 복리와 단리의 차이를 확인해보세요. 시간이 지날수록 복리의 효과는 기하급수적으로 증가합니다!
@@ -739,8 +739,9 @@
                         <tbody id="comparisonBody">
                         </tbody>
                     </table>
-                </div>
+                </article>
             </div>
+        </section>
 
         <!-- SEO Footer Content -->
         <footer style="margin-top: 3rem; padding: 2rem 1rem; text-align: center; color: var(--text-light); opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -762,7 +763,7 @@
                 © 2024 복리의 마법. 모든 계산 결과는 참고용이며, 실제 은행 상품과 차이가 있을 수 있습니다.
             </p>
         </footer>
-    </div>
+    </main>
 
     <script>
         let currentResult = null;
