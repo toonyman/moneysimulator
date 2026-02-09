@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - 복리의 마법</title>
+    <meta name="description" content="복리의 마법에 궁금한 점이나 제안할 내용이 있으신가요? 언제든지 편하게 문의해주세요.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-decoration">
+        <div class="circle" alt=""></div>
+        <div class="circle" alt=""></div>
+        <div class="circle" alt=""></div>
+    </div>
+
+    <header class="site-header">
+        <div class="logo">복리의 마법</div>
+        <nav class="main-nav">
+            <a href="index.html">홈</a>
+            <a href="guides.html">금융 가이드</a>
+            <a href="about.html">소개</a>
+            <a href="contact.html">문의하기</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <header>
+            <h1>문의하기</h1>
+            <p class="subtitle">여러분의 소중한 의견을 기다립니다.</p>
+        </header>
+
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <form id="contactForm">
+                <div class="input-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="message">메시지</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">메시지 보내기</button>
+            </form>
+        </div>
+    </main>
+
+    <footer style="margin-top: 3rem; padding: 2rem 1rem; text-align: center; color: var(--text-light); opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p style="margin-top: 2rem; font-size: 0.8rem;">
+            © 2024 복리의 마법. 모든 계산 결과는 참고용이며, 실제 은행 상품과 차이가 있을 수 있습니다.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('소중한 의견 감사합니다. 빠른 시일 내에 회신드리겠습니다.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

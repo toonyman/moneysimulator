@@ -50,535 +50,7 @@
     </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0a4d3c;
-            --secondary: #f4a261;
-            --accent: #e76f51;
-            --success: #2a9d8f;
-            --bg-dark: #0d1b2a;
-            --bg-light: #f8f9fa;
-            --text-dark: #1b263b;
-            --text-light: #e0e1dd;
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #2a4858 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-decoration {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(42, 157, 143, 0.15) 0%, transparent 70%);
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .circle:nth-child(1) {
-            width: 400px;
-            height: 400px;
-            top: -200px;
-            left: -200px;
-            animation-delay: 0s;
-        }
-
-        .circle:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            bottom: -150px;
-            right: -150px;
-            animation-delay: 5s;
-        }
-
-        .circle:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            top: 50%;
-            right: 10%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -2px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        /* Main Grid */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .card h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-icon {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        /* Input Groups */
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            color: var(--text-dark);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        input[type="number"], select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-family: 'Noto Sans KR', sans-serif;
-            transition: all 0.3s ease;
-            background: white;
-            color: var(--text-dark);
-        }
-
-        input[type="number"]:focus, select:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 4px rgba(244, 162, 97, 0.1);
-        }
-
-        .input-hint {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.3rem;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans KR', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
-            width: 100%;
-            justify-content: center;
-            font-size: 1.2rem;
-            padding: 1.2rem;
-            box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(231, 111, 81, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-small {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* Results Display */
-        .result-display {
-            background: linear-gradient(135deg, var(--primary), var(--success));
-            color: white;
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .result-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-value {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-detail {
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-
-        /* Chart Container */
-        .chart-container {
-            height: 300px;
-            margin: 1.5rem 0;
-            position: relative;
-            background: linear-gradient(to top, rgba(42, 157, 143, 0.05), transparent);
-            border-radius: 12px;
-            padding: 1rem;
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            height: 100%;
-            gap: 0.5rem;
-        }
-
-        .chart-bar {
-            flex: 1;
-            background: linear-gradient(to top, var(--secondary), var(--accent));
-            border-radius: 8px 8px 0 0;
-            position: relative;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            min-height: 20px;
-            cursor: pointer;
-        }
-
-        .chart-bar:hover {
-            opacity: 0.8;
-            transform: translateY(-5px);
-        }
-
-        .chart-bar-label {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.75rem;
-            color: var(--text-dark);
-            white-space: nowrap;
-        }
-
-        .chart-bar-value {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            white-space: nowrap;
-        }
-
-        /* Comparison Table */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .comparison-table th {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 700;
-        }
-
-        .comparison-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e0e0e0;
-            color: var(--text-dark);
-        }
-
-        .comparison-table tr:nth-child(even) {
-            background: rgba(42, 157, 143, 0.05);
-        }
-
-        .highlight-number {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .result-value {
-                font-size: 2rem;
-            }
-
-            .ad-slot-horizontal ins.adsbygoogle {
-                width: 320px !important;
-                height: 100px !important;
-            }
-
-            .comparison-table {
-                font-size: 0.85rem;
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: 0.7rem 0.5rem;
-            }
-
-            .chart-bar-label {
-                font-size: 0.65rem;
-            }
-
-            .chart-bar-value {
-                font-size: 0.7rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-                letter-spacing: -1px;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
-
-            .card h2 {
-                font-size: 1.4rem;
-            }
-
-            .result-value {
-                font-size: 1.8rem;
-            }
-
-            .btn-primary {
-                font-size: 1rem;
-                padding: 1rem;
-            }
-
-            .back-button {
-                font-size: 0.9rem;
-                padding: 0.7rem 1.2rem;
-            }
-
-            .ad-slot-horizontal ins.adsbygoogle {
-                width: 300px !important;
-                height: 100px !important;
-            }
-
-            input[type="number"], select {
-                font-size: 1rem;
-                padding: 0.9rem;
-            }
-        }
-
-        /* Result Page Grid - 반응형 */
-        .result-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 969px) {
-            .result-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .result-grid > .card:first-child {
-                grid-column: 1 / -1;
-            }
-
-            #comparisonCard {
-                grid-column: 1 / -1 !important;
-            }
-        }
-
-        /* Loading Animation */
-        .calculating {
-            display: inline-block;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Result Page Styles */
-        .result-page {
-            display: none;
-        }
-
-        .result-page.active {
-            display: block;
-        }
-
-        .input-page.hidden {
-            display: none;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-5px);
-        }
-
-        .result-grid {
-            display: grid;
-            gap: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7644009675634803"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-7644009675634803">
@@ -589,6 +61,16 @@
         <div class="circle" alt=""></div>
         <div class="circle" alt=""></div>
     </div>
+
+    <header class="site-header">
+        <div class="logo">복리의 마법</div>
+        <nav class="main-nav">
+            <a href="index.html">홈</a>
+            <a href="guides.html">금융 가이드</a>
+            <a href="about.html">소개</a>
+            <a href="contact.html">문의하기</a>
+        </nav>
+    </header>
 
     <main class="container">
         <!-- Input Page -->
@@ -621,19 +103,18 @@
                         <div class="input-hint">은행 상품의 연 이자율을 입력하세요</div>
                     </div>
 
-                    <div class="input-group">
-                        <label for="period">저축 기간</label>
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem;">
-                            <input type="number" id="period" value="10" min="1" step="1">
-                            <select id="periodUnit" style="padding: 1rem;">
-                                <option value="days">일</option>
-                                <option value="months">월</option>
-                                <option value="years" selected>년</option>
-                            </select>
-                        </div>
-                        <div class="input-hint">저축을 유지할 기간을 선택하세요</div>
-                    </div>
-
+                                            <div class="input-group">
+                                                <label for="period">저축 기간</label>
+                                                <div id="period-grid">
+                                                    <input type="number" id="period" value="10" min="1" step="1">
+                                                    <select id="periodUnit">
+                                                        <option value="days">일</option>
+                                                        <option value="months">월</option>
+                                                        <option value="years" selected>년</option>
+                                                    </select>
+                                                </div>
+                                                <div class="input-hint">저축을 유지할 기간을 선택하세요</div>
+                                            </div>
                     <button class="btn btn-primary" onclick="calculate()">
                         <span>📊</span> 시뮬레이션 시작
                     </button>
@@ -643,22 +124,22 @@
                 <aside class="card">
                     <h2><span class="card-icon">💡</span>복리의 힘</h2>
                     
-                    <article style="background: rgba(42, 157, 143, 0.05); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
-                        <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem;">복리란 무엇인가요?</h3>
-                        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 1rem;">
+                    <article>
+                        <h3>복리란 무엇인가요?</h3>
+                        <p>
                             복리는 '이자에 이자가 붙는 것'을 말합니다. 단리와 달리 원금뿐만 아니라 발생한 이자에도 이자가 붙어 
                             시간이 지날수록 자산이 기하급수적으로 증가합니다.
                         </p>
-                        <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem;">왜 중요한가요?</h3>
-                        <p style="color: var(--text-dark); line-height: 1.8;">
+                        <h3>왜 중요한가요?</h3>
+                        <p>
                             아인슈타인은 "복리는 세상에서 가장 위대한 수학적 발견"이라고 말했습니다. 
                             작은 금액이라도 꾸준히 저축하면 복리 효과로 큰 목돈을 만들 수 있습니다.
                         </p>
                     </article>
 
-                    <article style="background: linear-gradient(135deg, rgba(244, 162, 97, 0.1), rgba(231, 111, 81, 0.1)); padding: 1.5rem; border-radius: 12px;">
-                        <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem;">💰 사용 팁</h3>
-                        <ul style="color: var(--text-dark); line-height: 2; padding-left: 1.5rem;">
+                    <article>
+                        <h3>💰 사용 팁</h3>
+                        <ul>
                             <li>주거래 은행의 실제 금리를 입력해보세요</li>
                             <li>목표 금액을 정하고 역으로 계산해보세요</li>
                             <li>단기(30일), 중기(6개월), 장기(10년)로 비교해보세요</li>
@@ -693,17 +174,17 @@
                         <div class="result-detail" id="interestEarned">이자 수익: 0원</div>
                     </div>
 
-                    <div style="background: rgba(42, 157, 143, 0.05); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span style="color: var(--text-dark); font-weight: 700;">총 납입액</span>
+                    <div class="results-summary">
+                        <div class="results-summary-item">
+                            <span class="results-summary-label">총 납입액</span>
                             <span class="highlight-number" id="totalDeposit">0원</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span style="color: var(--text-dark); font-weight: 700;">이자 수익</span>
+                        <div class="results-summary-item">
+                            <span class="results-summary-label">이자 수익</span>
                             <span class="highlight-number" id="totalInterest">0원</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span style="color: var(--text-dark); font-weight: 700;">수익률</span>
+                        <div class="results-summary-item">
+                            <span class="results-summary-label">수익률</span>
                             <span class="highlight-number" id="returnRate">0%</span>
                         </div>
                     </div>
@@ -744,235 +225,27 @@
         </section>
 
         <!-- SEO Footer Content -->
-        <footer style="margin-top: 3rem; padding: 2rem 1rem; text-align: center; color: var(--text-light); opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.1);">
-            <h2 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-light);">복리 계산기로 재테크 시작하기</h2>
-            <p style="max-width: 800px; margin: 0 auto 1rem; line-height: 1.8; font-size: 0.95rem;">
+        <footer>
+            <h2>복리 계산기로 재테크 시작하기</h2>
+            <p>
                 복리의 마법 저축 시뮬레이터는 무료로 사용할 수 있는 복리 계산기입니다. 
                 초기 투자금, 월 적립금, 이자율만 입력하면 복리 효과를 즉시 확인할 수 있습니다. 
                 일/월/년 단위로 저축 기간을 설정하고, 복리와 단리를 비교하며, 나만의 저축 계획을 세워보세요.
             </p>
-            <p style="max-width: 800px; margin: 0 auto 1rem; line-height: 1.8; font-size: 0.95rem;">
+            <p>
                 KB국민은행, 신한은행, 우리은행, 하나은행 등 주거래 은행의 예금·적금 상품을 미리 시뮬레이션하고 
                 목표 금액 달성까지 얼마나 걸리는지 확인해보세요.
             </p>
-            <div style="margin-top: 1.5rem; font-size: 0.85rem;">
-                <p style="margin-bottom: 0.5rem;">🏦 주요 기능: 복리 계산 | 적금 시뮬레이션 | 예금 이자 계산 | 투자 수익 예측 | 재테크 플래너</p>
+            <div>
+                <p>🏦 주요 기능: 복리 계산 | 적금 시뮬레이션 | 예금 이자 계산 | 투자 수익 예측 | 재테크 플래너</p>
                 <p>💰 지원 은행: KB국민은행, 신한은행, 우리은행, 하나은행, NH농협은행, 카카오뱅크, 토스뱅크 등</p>
             </div>
-            <p style="margin-top: 2rem; font-size: 0.8rem;">
+            <p>
                 © 2024 복리의 마법. 모든 계산 결과는 참고용이며, 실제 은행 상품과 차이가 있을 수 있습니다.
             </p>
         </footer>
     </main>
 
-    <script>
-        let currentResult = null;
-
-        // 페이지 전환 함수
-        function showResultPage() {
-            document.getElementById('inputPage').classList.add('hidden');
-            document.getElementById('resultPage').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function goBack() {
-            document.getElementById('resultPage').classList.remove('active');
-            document.getElementById('inputPage').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // 저축 계산 함수
-        function calculate() {
-            const principal = parseFloat(document.getElementById('principal').value) || 0;
-            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
-            const rate = parseFloat(document.getElementById('rate').value) / 100 || 0;
-            const period = parseInt(document.getElementById('period').value) || 0;
-            const periodUnit = document.getElementById('periodUnit').value;
-
-            if (period <= 0) {
-                alert('저축 기간을 1 이상으로 설정해주세요.');
-                return;
-            }
-
-            // 기간을 월 단위로 변환
-            let totalMonths;
-            let displayPeriod;
-            
-            switch(periodUnit) {
-                case 'days':
-                    totalMonths = period / 30; // 대략적으로 30일 = 1개월
-                    displayPeriod = `${period}일`;
-                    break;
-                case 'months':
-                    totalMonths = period;
-                    displayPeriod = `${period}개월`;
-                    break;
-                case 'years':
-                    totalMonths = period * 12;
-                    displayPeriod = `${period}년`;
-                    break;
-            }
-
-            // 복리 계산
-            const monthlyRate = rate / 12;
-            const months = Math.ceil(totalMonths);
-            
-            let balance = principal;
-            let totalDeposit = principal;
-            const periodBalances = [principal];
-            
-            // 차트 표시를 위한 간격 계산
-            let chartInterval;
-            if (periodUnit === 'days') {
-                chartInterval = Math.ceil(months / 10); // 최대 10개 포인트
-            } else if (periodUnit === 'months') {
-                chartInterval = Math.max(1, Math.ceil(months / 12)); // 최대 12개 포인트
-            } else {
-                chartInterval = 12; // 년 단위는 매년
-            }
-
-            for (let i = 1; i <= months; i++) {
-                balance = balance * (1 + monthlyRate) + monthly;
-                totalDeposit += monthly;
-                
-                if (i % chartInterval === 0 || i === months) {
-                    periodBalances.push(balance);
-                }
-            }
-
-            const finalAmount = balance;
-            const totalInterest = finalAmount - totalDeposit;
-            const returnRate = totalDeposit > 0 ? (totalInterest / totalDeposit) * 100 : 0;
-
-            // 단리 계산 (비교용) - 월 단위로 계산
-            const years = totalMonths / 12;
-            const simpleInterest = totalDeposit * rate * years;
-            const simpleFinalAmount = totalDeposit + simpleInterest;
-            const difference = finalAmount - simpleFinalAmount;
-
-            // 결과 저장
-            currentResult = {
-                principal,
-                monthly,
-                rate: rate * 100,
-                period,
-                periodUnit,
-                displayPeriod,
-                totalMonths,
-                finalAmount,
-                totalDeposit,
-                totalInterest,
-                returnRate,
-                periodBalances,
-                chartInterval,
-                simpleFinalAmount,
-                simpleInterest,
-                difference
-            };
-
-            // 결과 표시
-            displayResults(currentResult);
-            displayChart(currentResult);
-            displayComparison(currentResult);
-            
-            // 결과 페이지로 전환
-            showResultPage();
-        }
-
-        function displayResults(result) {
-            document.getElementById('finalAmount').textContent = formatCurrency(result.finalAmount);
-            document.getElementById('interestEarned').textContent = `이자 수익: ${formatCurrency(result.totalInterest)}`;
-            document.getElementById('totalDeposit').textContent = formatCurrency(result.totalDeposit);
-            document.getElementById('totalInterest').textContent = formatCurrency(result.totalInterest);
-            document.getElementById('returnRate').textContent = result.returnRate.toFixed(2) + '%';
-        }
-
-        function displayChart(result) {
-            const chartBars = document.getElementById('chartBars');
-            chartBars.innerHTML = '';
-
-            const balances = result.periodBalances;
-            const maxBalance = Math.max(...balances);
-
-            balances.forEach((balance, index) => {
-                const bar = document.createElement('div');
-                bar.className = 'chart-bar';
-                const heightPercent = (balance / maxBalance) * 100;
-                
-                setTimeout(() => {
-                    bar.style.height = `${heightPercent}%`;
-                }, index * 50);
-
-                const label = document.createElement('div');
-                label.className = 'chart-bar-label';
-                
-                // 기간 단위에 따라 라벨 표시
-                if (result.periodUnit === 'days') {
-                    const days = index * result.chartInterval;
-                    label.textContent = days === 0 ? '시작' : `${days}일`;
-                } else if (result.periodUnit === 'months') {
-                    const months = index * result.chartInterval;
-                    label.textContent = months === 0 ? '시작' : `${months}월`;
-                } else {
-                    const years = Math.floor(index * result.chartInterval / 12);
-                    label.textContent = years === 0 ? '시작' : `${years}년`;
-                }
-                
-                const value = document.createElement('div');
-                value.className = 'chart-bar-value';
-                value.textContent = formatCurrency(balance, true);
-
-                bar.appendChild(label);
-                bar.appendChild(value);
-                chartBars.appendChild(bar);
-            });
-        }
-
-        function displayComparison(result) {
-            const comparisonBody = document.getElementById('comparisonBody');
-            
-            comparisonBody.innerHTML = `
-                <tr>
-                    <td><strong>복리 계산</strong></td>
-                    <td class="highlight-number">${formatCurrency(result.finalAmount)}</td>
-                    <td class="highlight-number">${formatCurrency(result.totalInterest)}</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td><strong>단리 계산</strong></td>
-                    <td>${formatCurrency(result.simpleFinalAmount)}</td>
-                    <td>${formatCurrency(result.simpleInterest)}</td>
-                    <td style="color: var(--accent); font-weight: 700;">
-                        -${formatCurrency(result.difference)}
-                    </td>
-                </tr>
-                <tr style="background: rgba(42, 157, 143, 0.1);">
-                    <td colspan="4" style="text-align: center; font-weight: 700; color: var(--success);">
-                        💡 복리 효과로 ${formatCurrency(result.difference)} 더 벌 수 있습니다!
-                    </td>
-                </tr>
-            `;
-        }
-
-        function formatCurrency(amount, short = false) {
-            if (short && amount >= 100000000) {
-                return (amount / 100000000).toFixed(1) + '억';
-            } else if (short && amount >= 10000) {
-                return (amount / 10000).toFixed(0) + '만';
-            }
-            return amount.toLocaleString('ko-KR') + '원';
-        }
-
-        // 엔터키로 계산 실행
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('input[type="number"]').forEach(input => {
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        calculate();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
